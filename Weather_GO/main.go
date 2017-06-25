@@ -17,6 +17,11 @@ func init() {
 func main() {
    fmt.Println("Initiliazing Weather via:", zipcode )
 
-   req, err := http.NewRequest(http.MethodGet, geocodeUrl,, nil)
+   req, err := http.NewRequest(http.MethodGet, geocodeUrl, nil)
 
+   if err != nil {
+     fmt.Println(err)
+   }
+  
+   fmt.Println(req)
 }
