@@ -20,7 +20,7 @@ func insert(head *node, val int) {
 			}
 			temp = temp.left
 		} else if val >= temp.val {
-			// if val is greater than temp val check if right node is nil, if it is insert into node
+			// if val is greater than temp val check if right node is nil, if it is nmake this right node
 			if temp.right == nil {
 				temp.right = newNode
 				return
@@ -42,6 +42,8 @@ func main() {
 	for i := 0; i < 100; i++ {
 		insert(head, i)
 	}
+
+	// Just for to play with it and wrap my mind around it better
 
 	println(head.val)
 	println(head.right.val)
