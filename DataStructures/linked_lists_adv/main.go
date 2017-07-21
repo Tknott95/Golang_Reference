@@ -16,9 +16,9 @@ type Student struct {
 
 func main() {
 
-	students := new(Student)
+	var students *Student
 
-	students.Next = nil
+	students = nil
 
 	if len(os.Args) < 2 {
 		println("There is no file")
@@ -39,20 +39,41 @@ func main() {
 		tempStu := &Student{
 			name: td[0],
 			ssn:  td[2],
-			Next: students.Next,
+			Next: students,
 		}
 
 		tempStu.age, _ = strconv.Atoi(td[1])
 
-		students.Next = tempStu
+		students = tempStu
 	}
 
 	println("Our list of students\n")
 
 	/* while here is a next student keep itterating over unitl we hit the end (When next student is nil) */
 
-	for s := students.Next; s != nil; s = s.Next {
+	for s := students; s != nil; s = s.Next {
 		println(s.name, s.age, s.ssn)
 	}
 
+	println("\nOur REVRESED list of students\n")
+
+	/* while here is a next student keep itterating over unitl we hit the end (When next student is nil) */
+
+	students = reverse(students)
+
+	for s := students; s != nil; s = s.Next {
+		println(s.name, s.age, s.ssn)
+	}
+
+}
+
+func reverse(curr *Student) *Student {
+	if curr.Next == nil {
+		return curr
+	} else {
+		newHead := reverse(curr.Next)
+		curr.Next.Next = curr
+		curr.Next = nil
+		return newHead
+	}
 }
