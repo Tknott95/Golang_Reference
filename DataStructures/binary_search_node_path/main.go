@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type node struct {
 	left   *node
 	right  *node
@@ -75,7 +77,7 @@ func main() {
 		path[i], path[opp] = path[opp], path[i]
 	}
 
-	println(path)
+	fmt.Println(path)
 
 	println(head.right.right.val)
 	println(head.left.right.val)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TKS pipelines</title>
+</head>
+<body>
+
+{{.}} Plain Val
+
+{{. | dblF}}  val doubled
+
+{{. | dblF | sqF}}  val doubled then squared
+
+{{. | dblF | sqF | sqRtF}} plain val double squared then given square root 
+
+</body>
