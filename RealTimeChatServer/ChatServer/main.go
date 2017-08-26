@@ -8,7 +8,7 @@ import (
 	hub "github.com/tknott95/Golang_Reference/RealTimeChatServer/ChatServer/Controllers/hubCtrl"
 )
 
-var index = template.Must(template.ParseFiles("./index.html"))
+var index = template.Must(template.ParseFiles("./Views/index.html"))
 
 func home(w http.ResponseWriter, r *http.Request) {
 	index.Execute(w, nil)
