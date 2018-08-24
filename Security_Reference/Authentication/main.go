@@ -5,11 +5,14 @@ import (
 	"time"
 
 	"github.com/satori/go.uuid"
+	ctrlJwt "github.com/tknott95/Golang_Reference/Security_Reference/Authentication/JWT"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func main() {
 	timeExamples()
+
+	ctrlJwt.Init()
 
 	fmt.Printf("\n EXAMPLE |  bcrypt.GenerateFromPassword([]byte(input), 10) :\n %x \n", hashInput("password"))
 
@@ -18,9 +21,9 @@ func main() {
 }
 
 func timeExamples() {
-	now := time.Now().Unix() // type int64
-	minsFromNow := time.Now().Add(time.Minute * 20).Unix()
-	hourFromNow := time.Now().Add(time.Hour * 1).Unix()
+	now := time.Now().Unix()                               // type int64
+	minsFromNow := time.Now().Add(time.Minute * 20).Unix() // type int64
+	hourFromNow := time.Now().Add(time.Hour * 1).Unix()    // type int64
 
 	print("TIME EXAMPLES")
 	fmt.Printf("\n EXAMPLE | time.Now().Unix():\n %v \n", now)
@@ -31,11 +34,11 @@ func timeExamples() {
 }
 
 func hashInput(input string) []byte {
-	newHash, _ := bcrypt.GenerateFromPassword([]byte(input), 10) // returns type []byte
+	newHash, _ := bcrypt.GenerateFromPassword([]byte(input), 10) // type []byte
 	return newHash
 }
 
 func newU4() uuid.UUID {
-	u4 := uuid.Must(uuid.NewV4())
+	u4 := uuid.Must(uuid.NewV4()) // type uuid.UUID  ( under hood is [size]byte )
 	return u4
 }
