@@ -16,20 +16,18 @@ func main() {
 	timeExamples()
 
 	ctrlJwt.InitKeys()
-	jwtkey, err := ctrlJwt.GenerateJWT(newU4(), "tk")
-
-	fmt.Printf("\n EXAMPLE | %v", err)
-
-	fmt.Printf("\n EXAMPLE | %v", jwtkey)
 
 	printing()
 
 }
 
 func printing() {
+	z, zerr := ctrlJwt.GenerateJWT("sdd", "tk")
 	fmt.Printf("\n EXAMPLE |  bcrypt.GenerateFromPassword([]byte(input), 10) :\n %x \n", hashInput("password"))
 
 	fmt.Printf("\n EXAMPLE |  uuid.Must(uuid.NewV4()) :\n %s \n", newU4())
+
+	fmt.Printf("\n EXAMPLE | ctrlJwt.GenerateJWT(newU4(), tk) : \n %s %s \n", z, zerr)
 }
 
 func timeExamples() {

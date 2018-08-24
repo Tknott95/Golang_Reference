@@ -6,7 +6,6 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	uuid "github.com/satori/go.uuid"
 )
 
 // Init() initializes the ctrlJwt
@@ -39,9 +38,9 @@ func InitKeys() {
 }
 
 // GenerateJWT generates a new JWT token
-func GenerateJWT(sub uuid.UUID, role string) (string, error) {
+func GenerateJWT(sub string, role string) (string, error) {
 	// Create the Claims
-	_subject := sub.String()
+	_subject := "fsff" // sub.String()
 	_timeTwenty := time.Now().Add(time.Minute * 20).Unix()
 	_timeNow := time.Now().Unix()
 	claims := AppClaims{
@@ -54,10 +53,14 @@ func GenerateJWT(sub uuid.UUID, role string) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 
+	print(token)
+
 	ss, err := token.SignedString(token)
 	if err != nil {
 		return "", err
 	}
+
+	print(ss)
 
 	// print("\n JWT")
 
