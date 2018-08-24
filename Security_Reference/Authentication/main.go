@@ -15,19 +15,17 @@ import (
 func main() {
 	timeExamples()
 
-	ctrlJwt.InitKeys()
-
 	printing()
 
+	jwtExample()
 }
 
 func printing() {
-	z, _ := ctrlJwt.GenerateJWT(newU4(), "tk")
+
 	fmt.Printf("\n EXAMPLE |  bcrypt.GenerateFromPassword([]byte(input), 10) :\n %x \n", hashInput("password"))
 
 	fmt.Printf("\n EXAMPLE |  uuid.Must(uuid.NewV4()) :\n %s \n", newU4())
 
-	fmt.Printf("\n EXAMPLE | ctrlJwt.GenerateJWT(newU4(), tk) : \n  %s \n", z)
 }
 
 func timeExamples() {
@@ -51,4 +49,11 @@ func hashInput(input string) []byte {
 func newU4() uuid.UUID {
 	u4 := uuid.Must(uuid.NewV4()) // type uuid.UUID  ( under hood is [size]byte )
 	return u4
+}
+
+func jwtExample() {
+	// keygen .sh file inside keys dir for auto generating keys
+	ctrlJwt.InitKeys()
+	z, _ := ctrlJwt.GenerateJWT(newU4(), "tk")
+	fmt.Printf("\n EXAMPLE | ctrlJwt.GenerateJWT(newU4(), tk) : \n  %s \n", z)
 }
