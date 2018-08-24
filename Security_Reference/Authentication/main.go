@@ -9,15 +9,27 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// bcrypt.CompareHashAndPassword([]byte(testUser.Password), []byte(user.Password)) == nil
+// }
+
 func main() {
 	timeExamples()
 
-	ctrlJwt.Init()
+	ctrlJwt.InitKeys()
+	jwtkey, err := ctrlJwt.GenerateJWT(newU4(), "tk")
 
+	fmt.Printf("\n EXAMPLE | %v", err)
+
+	fmt.Printf("\n EXAMPLE | %v", jwtkey)
+
+	printing()
+
+}
+
+func printing() {
 	fmt.Printf("\n EXAMPLE |  bcrypt.GenerateFromPassword([]byte(input), 10) :\n %x \n", hashInput("password"))
 
 	fmt.Printf("\n EXAMPLE |  uuid.Must(uuid.NewV4()) :\n %s \n", newU4())
-
 }
 
 func timeExamples() {

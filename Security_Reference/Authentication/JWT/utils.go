@@ -4,7 +4,6 @@ import (
 	"crypto/rsa"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	uuid "github.com/satori/go.uuid"
 )
 
 var (
@@ -21,7 +20,9 @@ const (
 )
 
 type AppClaims struct {
-	Sub  uuid.UUID `json:"sub"`
-	Role string    `json:"role"`
+	// Sub       uuid.UUID `json:"Sub"`
+	// IssuedAt  int64     `json:"iss"`
+	// ExpiresAt int64     `json:"exp"`
+	Role string `json:"role"`
 	jwt.StandardClaims
 }

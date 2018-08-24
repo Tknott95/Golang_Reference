@@ -1,7 +1,6 @@
 package ctrlJwt
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"time"
@@ -11,10 +10,10 @@ import (
 )
 
 // Init() initializes the ctrlJwt
-func Init(uid uuid.UUID) {
-	InitKeys()
-	GenerateJWT(uid, "login")
-}
+// func Init(uid uuid.UUID) {
+// 	InitKeys()
+// 	GenerateJWT(uid, "login")
+// }
 
 func InitKeys() {
 
@@ -42,13 +41,15 @@ func InitKeys() {
 // GenerateJWT generates a new JWT token
 func GenerateJWT(sub uuid.UUID, role string) (string, error) {
 	// Create the Claims
+	_subject := sub.String()
+	_timeTwenty := time.Now().Add(time.Minute * 20).Unix()
+	_timeNow := time.Now().Unix()
 	claims := AppClaims{
-		Sub:  sub,
-		Role: role,
+		role,
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Minute * 20).Unix(),
-			Issuer:    "TrevorKnott",
-			IssuedAt:  time.Now().Unix(),
+			ExpiresAt: _timeTwenty,
+			IssuedAt:  _timeNow,
+			Subject:   _subject,
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
@@ -58,7 +59,9 @@ func GenerateJWT(sub uuid.UUID, role string) (string, error) {
 		return "", err
 	}
 
-	fmt.Printf("%s", ss)
+	// print("\n JWT")
+
+	// fmt.Printf("%s", ss)
 
 	return ss, nil
 }
