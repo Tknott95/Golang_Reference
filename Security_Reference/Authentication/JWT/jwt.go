@@ -1,11 +1,13 @@
 package ctrlJwt
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	uuid "github.com/satori/go.uuid"
 )
 
 // Init() initializes the ctrlJwt
@@ -38,12 +40,13 @@ func InitKeys() {
 }
 
 // GenerateJWT generates a new JWT token
-func GenerateJWT(sub string, role string) (string, error) {
+func GenerateJWT(sub uuid.UUID, role string) (string, error) {
 	// Create the Claims
-	_subject := "fsff" // sub.String()
+	_subject := fmt.Sprintf("%v", sub)
 	_timeTwenty := time.Now().Add(time.Minute * 20).Unix()
 	_timeNow := time.Now().Unix()
 	claims := AppClaims{
+
 		role,
 		jwt.StandardClaims{
 			ExpiresAt: _timeTwenty,
@@ -55,7 +58,7 @@ func GenerateJWT(sub string, role string) (string, error) {
 
 	print(token)
 
-	ss, err := token.SignedString(token)
+	ss, err := token.SignedString(signKey)
 	if err != nil {
 		return "", err
 	}

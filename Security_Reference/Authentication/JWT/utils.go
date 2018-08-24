@@ -20,7 +20,7 @@ const (
 )
 
 type AppClaims struct {
-	// Sub       uuid.UUID `json:"Sub"`
+	// Sub uuid.UUID `json:"Sub"`
 	// IssuedAt  int64     `json:"iss"`
 	// ExpiresAt int64     `json:"exp"`
 	Role string `json:"role"`
