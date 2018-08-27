@@ -1,6 +1,7 @@
 package converter
 
 import (
+	"image"
 	"image/jpeg"
 	"image/png"
 	"io"
@@ -18,4 +19,12 @@ func err(err error) error {
 		return err
 	}
 	return nil
+}
+
+func convertToPNG(w io.Writer, r io.Reader) error {
+	img, _, err := image.Decode(r)
+	if err != nil {
+		return err
+	}
+	return png.Encode(w, img)
 }
