@@ -46,7 +46,6 @@ func GenerateJWT(sub uuid.UUID, role string) (string, error) {
 	_timeTwenty := time.Now().Add(time.Minute * 20).Unix()
 	_timeNow := time.Now().Unix()
 	claims := AppClaims{
-
 		role,
 		jwt.StandardClaims{
 			ExpiresAt: _timeTwenty,
